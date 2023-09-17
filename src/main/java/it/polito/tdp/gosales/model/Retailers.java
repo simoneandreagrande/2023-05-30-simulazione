@@ -4,6 +4,7 @@ import java.util.Objects;
 
 public class Retailers implements Comparable<Retailers> {
 
+	// implements per ordinare alfabeticamente
 	private int code;
 	private String name;
 	private String type;

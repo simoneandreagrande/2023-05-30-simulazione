@@ -155,6 +155,7 @@ public class GOsalesDAO {
 		try {
 			Connection conn = DBConnect.getConnection();
 			PreparedStatement st = conn.prepareStatement(query);
+			// impostiamo la nazione ricevuta dal programma
 			st.setString(1, nazione);
 			ResultSet rs = st.executeQuery();
 
@@ -178,13 +179,20 @@ public class GOsalesDAO {
 	
 	/**
 	 * Metodo che legge gli archi del grafo dal database, restituendo una lista di 
-	 * oggetti di tipo Arco
+	 * oggetti di tipo Arco con variabili:
 	 * @param nazione
 	 * @param anno
 	 * @param Nmin
 	 * @return
 	 */
 	public List<Arco> getArchi(String nazione, int anno, int Nmin){
+		// stessa nazione, stesso retail code, s1 e s2 vendono lo stesso prodotto
+		// i due retailer code sono diversi, i venditori non sono uguali
+		// che siano dello stesso anno
+		// poi conto i prodotti in comune, non ripetuti
+		// raggruppo e filtro per quanti prodotti in comune devono avere
+		
+		
 		String query = "SELECT r1.Retailer_code as rCode1, r2.Retailer_code as rCode2, COUNT(DISTINCT s1.Product_number) as N "
 				+ "FROM go_retailers r1, go_retailers r2, go_daily_sales s1, go_daily_sales s2 "
 				+ "WHERE r1.Country = ? AND r1.Country = r2.Country AND "
@@ -193,7 +201,7 @@ public class GOsalesDAO {
 				+ "r1.Retailer_code < r2.Retailer_code "
 				+ "AND YEAR(s1.Date) = ? AND YEAR(s1.Date) = YEAR(s2.Date) "
 				+ "GROUP BY r1.Retailer_code, r2.Retailer_code "
-				+ "HAVING N >=?";
+				+ "HAVING N >= ?";
 		/*
 		 * Another example of a query that does the same thing
 		 */

@@ -17,6 +17,7 @@ import it.polito.tdp.gosales.dao.GOsalesDAO;
 
 public class Model {
 	
+	// dao, identity map che mappa i retailers con il loro id
 	private GOsalesDAO dao;
 	private Graph<Retailers, DefaultWeightedEdge> grafo;
 	private Map<Integer, Retailers> retailersIdMap;
@@ -41,7 +42,7 @@ public class Model {
 	
 	
 	/**
-	 * Metodo che crea il grafo
+	 * Metodo che crea il grafo semplice, non orientato e pesato
 	 * @param nazione
 	 * @param anno
 	 * @param nMin
@@ -52,10 +53,11 @@ public class Model {
 		
 		//assegnazione dei vertici
 		List<Retailers> vertici = this.dao.getVertici(nazione);
+		// aggiungo vertici al grafico
 		Graphs.addAllVertices(this.grafo, vertici);
 		
 		//assegnazione degli archi
-		// VERSIONE 1) calcoliamo gli archi da query
+		// VERSIONE 1) calcoliamo gli archi da query, metodo migliore
 		List<Arco> archi = this.dao.getArchi(nazione, anno, nMin);
 		for (Arco a : archi) {
 			Retailers r1 = this.retailersIdMap.get(a.getrCode1());

@@ -1,12 +1,13 @@
 package it.polito.tdp.gosales.model;
 
 public class Arco {
+	// classe in cui ho come variabili il risultato della query
 	
 	private int rCode1;
 	private int rCode2;
 	private int NComune;
 	
-	
+	// costruttore, get, set, hashcode e equals (se servono)
 	public Arco(int rCode1, int rCode2, int nComune) {
 		super();
 		this.rCode1 = rCode1;
