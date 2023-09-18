@@ -2,6 +2,7 @@ package it.polito.tdp.gosales.model;
 
 public class ArcoExt implements Comparable<ArcoExt>{
 	
+	// classe che estende arco, ci servono i retailers associati agli archi e non i prodotti
 	private Retailers r1;
 	private Retailers r2;
 	private int peso;

@@ -117,6 +117,7 @@ public class Model {
 					(int)(this.grafo.getEdgeWeight(e))) );
 			
 		}
+		// ordina la lista
 		Collections.sort(result);
 		
 		//restituire lista
@@ -169,6 +170,7 @@ public class Model {
 			}
 		}
 		
+		// creo classe di appoggio StatsConnessa, ci mettiamo dentro la componente connessa, i setretailers e il peso
 		//restituiamo il risultato (dimensione componente connessa + peso totale)
 		StatsConnessa result = new StatsConnessa(connessi, peso);
 		return result;
